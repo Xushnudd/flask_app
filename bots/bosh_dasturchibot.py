@@ -1,6 +1,7 @@
 import telebot
 from telebot import types
 
+import time
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import random
@@ -9,7 +10,7 @@ import xml.etree.ElementTree as ET
 
 
 tashkent_time = datetime.now(ZoneInfo("Asia/Tashkent"))
-time = tashkent_time.strftime("%H:%M")
+current_time = tashkent_time.strftime("%H:%M")
 
 
 
@@ -70,8 +71,8 @@ def markup_button(btns, num, is_persistent=False, resize_keyboard=True, one_time
 
 
 
-
-bosh_dasturchibot = telebot.TeleBot("5035661986:AAGHbdO-WNFHV9R1kf1LIJelYvPQ3OQGmy0", threaded=False)
+token = ["7807701719:AAEEI6FMs6eFE6ffIEy1ri4KQ-HUehaKTbo", "5035661986:AAGHbdO-WNFHV9R1kf1LIJelYvPQ3OQGmy0"]
+bosh_dasturchibot = telebot.TeleBot(token[0], threaded=False)
 
 compane = ['BOSH DASTURCHI | BOT', '@bosh_dasturchibot']
 state = {}
@@ -244,7 +245,7 @@ def texts(m):
     
     #Exchange rate
     if text == "💱Valyuta kursi":
-        reply = f"{kurs()} Hozir soat⌚: {time}"
+        reply = f"{kurs()}"
         bot.send_message(chat_id, reply, parse_mode="html")
         
         
