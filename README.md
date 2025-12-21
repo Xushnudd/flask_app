@@ -1,2 +1,2 @@
-# texnosmm.uz
+# Texnosmm.uz
 Texnosmm.uz saytimdagi barcha kodlar shu yerda ishlaydi.
