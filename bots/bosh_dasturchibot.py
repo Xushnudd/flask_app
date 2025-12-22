@@ -46,6 +46,46 @@ def kurs():
 
     return text
 
+def change_fonts(text):
+    # Ingliz alifbosi: 26 kichik + 26 katta = 52 ta belgi
+    normal = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    
+    fonts = {
+        "bold": "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙",
+        "decorative": "ᗩᗷᑕᗪEᖴGᕼIᒍKᒪᗰᑎOᑭᑫᖇᔕTᑌᐯᗯ᙭YᘔᗩᗷᑕᗪEᖴGᕼIᒍKᒪᗰᑎOᑭᑫᖇᔕTᑌᐯᗯ᙭Yᘔ",
+        "double_struck": "𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ",
+        "cursive": "𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩",
+        "monospace": "𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉",
+        "sans_italic": "𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝🇮𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕",
+        "gothic_bold": "𝖆𝖇𝖈𝖉𝖊f𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅",
+        "bubbles": "ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ",
+        "squared": "🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅺🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉",
+        "small_caps": "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ",
+        "black_bubbles": "🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩",
+        "upside_down": "ɐqɔpǝɟƃɥıɾʞןɯuodɹsʇunʌʍxʎzⱯᗺƆᗡƎℲפHIՐʞ˥WNOԀΌᴚS⊥∩ΛMX⅄Z",
+        "flags": "🇦🇧🇨🇩🇪🇫🇬🇭🇮🇯🇰🇱🇲🇳🇴🇵🇶🇷🇸🇹🇺🇻🇼🇽🇾🇿🇦🇧🇨🇩🇪🇫🇬🇭🇮🇯🇰🇱🇲🇳🇴🇵🇶🇷🇸🇹🇺🇻🇼🇽🇾🇿"
+    }
+
+    results = []
+
+    for style, target_font in fonts.items():
+        # Har bir shriftni tekshiramiz, uzunligi 52 bo'lishi shart
+        if len(target_font) == 52:
+            table = str.maketrans(normal, target_font)
+            res = text.translate(table)
+            
+            if style == "upside_down":
+                res = res[::-1]
+            results.append(res)
+        else:
+            # Agar xato bo'lsa, konsolga chiqaradi (debug uchun)
+            print(f"Xato: {style} uzunligi {len(target_font)} ta, 52 ta bo'lishi kerak.")
+
+    # Sparkle alohida qo'shiladi
+    sparkle_res = "".join([char + "҉" if char.isalpha() else char for char in text])
+    results.append(sparkle_res)
+
+    return results
 
 
 def markup_button(btns, num, is_persistent=False, resize_keyboard=True, one_time_keyboard=False, input_field_placeholder=None, selective=False):
@@ -159,7 +199,8 @@ def texts(m):
 
     #services
     if text == "🤖Bot xizmatlari" and step == "1" or text == "🔙ortga" and (
-        step == "2.1" or step == "2.2" or step == "2.3" or step == "2.4" or step == "2.5"
+        step == "2.1" or step == "2.2" or step == "2.3" or step == "2.4" or step == "2.5" or
+        step == "2.6" or step == "2.7"
         ):
         state[chat_id]["step"] = "2"
         
@@ -170,6 +211,7 @@ def texts(m):
             "💱Valyuta kursi",
             "🧩Matiqli savollar🧩",
             "♻Yangilash",
+            "✔️Nick yasash✔️",
             "🤖BOT YASASH XIZMATI🤖"
         ]
 
@@ -262,10 +304,10 @@ def texts(m):
         
     #♻Yangilash
     if text == "♻Yangilash":
-        reply = ["<b>○○○○○○○○○○ 0%</b>", "<b>●○○○○○○○○○ 10%</b>", "<b>●●○○○○○○○○ 20%</b>", "<b>●●●○○○○○○○ 30%</b>",
-                "<b>●●●●○○○○○○ 40%</b>", "<b>●●●●●○○○○○ 50%</b>", "<b>●●●●●●○○○○ 60%</b>", "<b>●●●●●●●○○○ 70%</b>",
-                "<b>●●●●●●●●○○ 80%</b>", "<b>●●●●●●●●●○ 90%</b>", "<b>●●●●●●●●●●100%</b>", f"● Botimiz yangilandi ✔\n● Qayta /start ni bosing!\n😎 By: {compane[0]}"
-                 ]
+        reply = []
+        for i in range(11):
+            reply.append(f"<b>{"●"*i}{"○"* (10-i)}{i*10}%</b>")
+        reply.append(f"● Botimiz yangilandi ✔\n● Qayta /start ni bosing!\n😎 By: {compane[0]}")
         
         send_msg = bot.send_message(chat_id, reply[0], parse_mode="html")
         msg_id = send_msg.message_id
@@ -273,6 +315,20 @@ def texts(m):
         for i in range(1, len(reply)):
             bot.edit_message_text(chat_id=chat_id, message_id=msg_id, text=reply[i], parse_mode="html")
             time.sleep(1)
+            
+            
+            
+    #✔️Nick yasash✔️
+    if text == "✔️Nick yasash✔️":
+        state[chat_id]["step"] = "2.7"
+        
+        reply = "Bu bo'limda 13 xil nick yasay olasiz.\nkerakli so'zni yozing !"
+        bot.send_message(chat_id, reply, reply_markup=markup.add(*back_menu))
+    
+    if step == "2.7" and text != back_menu[0] and text != back_menu[1]:
+        lst = change_fonts(text)
+        for i in lst:
+            bot.send_message(chat_id, i)
         
         
         
