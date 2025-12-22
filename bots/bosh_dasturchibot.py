@@ -65,7 +65,7 @@ def markup_button(btns, num, is_persistent=False, resize_keyboard=True, one_time
 
 
 token = ["7807701719:AAEEI6FMs6eFE6ffIEy1ri4KQ-HUehaKTbo", "5035661986:AAGHbdO-WNFHV9R1kf1LIJelYvPQ3OQGmy0"]
-bosh_dasturchibot = telebot.TeleBot(token[1], threaded=False)
+bosh_dasturchibot = telebot.TeleBot(token[0], threaded=False)
 
 compane = ['BOSH DASTURCHI | BOT', '@bosh_dasturchibot']
 state = {}
@@ -114,19 +114,12 @@ def texts(m):
 
     # Bwebhook = types.KeyboardButton("🕸webhook qilish")
     # Bmath = types.KeyboardButton("🔢Misol yechish")
-    services_name = [
-        "📝 Telegram tillari",
-        "🎇Telegram fon",
-        "🔐Random Parol",
-        "💱Valyuta kursi",
-        "🤖BOT YASASH XIZMATI🤖"
-    ]
 
 
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     callback_button = types.InlineKeyboardMarkup()
 
-    back_menu = types.ReplyKeyboardMarkup(resize_keyboard=True).add(back, start)
+    back_menu = [back, start]
 
     step = state[chat_id]["step"]
 
@@ -153,9 +146,18 @@ def texts(m):
 
     #services
     if text == "🤖Bot xizmatlari" and step == "1" or text == "🔙ortga" and (
-        step == "2.1" or step == "2.2" or step == "2.3" or step == "2.4"
+        step == "2.1" or step == "2.2" or step == "2.3" or step == "2.4" or step == "2.5"
         ):
         state[chat_id]["step"] = "2"
+        
+        services_name = [
+            "📝 Telegram tillari",
+            "🎇Telegram fon",
+            "🔐Random Parol",
+            "💱Valyuta kursi",
+            "🧩Matiqli savollar🧩",
+            "🤖BOT YASASH XIZMATI🤖"
+        ]
 
         bot.send_message(
             chat_id, "Xizmatlar bo'limiga xush kelibsiz !",
@@ -243,7 +245,23 @@ def texts(m):
         
         
         
-    #create bots srvices
+    if text == "🧩Matiqli savollar🧩":
+        state[chat_id]["step"] = "2.5"
+        
+        reply = "Tanlang!"
+        
+        btns = []
+        for i in range(1, 205):
+            if i == 1:
+                btns.append("🔙ortga")
+                btns.append("🔝Bosh sahifa")
+            btns.append(f"{i}-savol")
+            
+        bot.send_message(chat_id, reply, parse_mode="html", reply_markup=markup_button(btns, 3).add(*back_menu))
+        
+        
+        
+    #create bots services
     if text == "🤖BOT YASASH XIZMATI🤖":
         reply = (
             "<b>ASSALOMU ALAYKUM BOTIMIZ AZOSI ✌️😎</b>\n"
