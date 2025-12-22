@@ -1,16 +1,9 @@
 import telebot
 from telebot import types
 
-import time
-from datetime import datetime
-from zoneinfo import ZoneInfo
 import random
 import requests
 import xml.etree.ElementTree as ET
-
-
-tashkent_time = datetime.now(ZoneInfo("Asia/Tashkent"))
-current_time = tashkent_time.strftime("%H:%M")
 
 
 
