@@ -62,6 +62,17 @@ def markup_button(btns, num, is_persistent=False, resize_keyboard=True, one_time
         markup.add(*row)
     return markup
 
+def inline_button(btns, num):
+    callback_button = types.InlineKeyboardMarkup()
+    
+    for i in range(0, len(btns), num):
+        row = []
+        for j in range(num):
+            if i+1 < len(btns):
+                row.append(types.InlineKeyboardButton(btns[i+1][0], url=btns[i+1][1]))
+        callback_button.add(*row)
+    return callback_button
+
 
 
 token = ["7807701719:AAEEI6FMs6eFE6ffIEy1ri4KQ-HUehaKTbo", "5035661986:AAGHbdO-WNFHV9R1kf1LIJelYvPQ3OQGmy0"]
@@ -182,18 +193,10 @@ def texts(m):
             ("💠 Azerbayjan tili", "tg://setlanguage?lang=az-beta"),
             ("👨‍💻Adminstrator", "t.me/xushnud_nishonov")
         ]
-        
-        for i in range(0, len(btns), 2):
-            btn1 = types.InlineKeyboardButton(btns[i][0], url=btns[i][1])
-            if i+1 < len(btns):
-                btn2 = types.InlineKeyboardButton(btns[i+1][0], url=btns[i+1][1])
-                callback_button.add(btn1, btn2)
-            else:
-                callback_button.add(btn1)
 
         bot.reply_to(
             m, reply, parse_mode="html",
-            reply_markup=callback_button
+            reply_markup=inline_button(btns, 2)
         )
 
     # Telegram backgrounds
@@ -215,18 +218,10 @@ def texts(m):
             ("🌅Telegram 12fon", "https://t.me/bg/Qe9IiLLfiVIBAAAAn_BDUKSYaCs"),
             ("👨‍💻Adminstrator", "t.me/xushnud_nishonov")
         ]
-        
-        for i in range(0, len(btns), 2):
-            btn1 = types.InlineKeyboardButton(btns[i][0], url=btns[i][1])
-            if i+1 < len(btns):
-                btn2 = types.InlineKeyboardButton(btns[i+1][0], url=btns[i+1][1])
-                callback_button.add(btn1, btn2)
-            else:
-                callback_button.add(btn1)
 
         bot.reply_to(
             m, reply, parse_mode="html",
-            reply_markup=callback_button
+            reply_markup=inline_button(btns, 2)
         )
         
         
