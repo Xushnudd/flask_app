@@ -325,7 +325,7 @@ def texts(m):
         reply = "Bu bo'limda 13 xil nick yasay olasiz.\nkerakli so'zni yozing !"
         bot.send_message(chat_id, reply, reply_markup=markup.add(*back_menu))
     
-    if step == "2.7" and text != back_menu[0] and text != back_menu[1]:
+    if step == "2.7" and text != "🔙ortga" and text != "🔝Bosh sahifa" and text != "/start":
         lst = change_fonts(text)
         for i in lst:
             bot.send_message(chat_id, i)
