@@ -1,6 +1,7 @@
 import telebot
 from telebot import types
 
+import time
 import random
 import requests
 import xml.etree.ElementTree as ET
@@ -115,6 +116,7 @@ def texts(m):
     bot = bosh_dasturchibot
 
     text = m.text
+    message_id = m.message_id
     chat_id = m.chat.id
 
     if chat_id not in state:
@@ -167,6 +169,7 @@ def texts(m):
             "🔐Random Parol",
             "💱Valyuta kursi",
             "🧩Matiqli savollar🧩",
+            "♻Yangilash",
             "🤖BOT YASASH XIZMATI🤖"
         ]
 
@@ -239,7 +242,8 @@ def texts(m):
         bot.send_message(chat_id, reply, parse_mode="html")
         
         
-        
+    
+    #Mantiqli savollar
     if text == "🧩Matiqli savollar🧩":
         state[chat_id]["step"] = "2.5"
         
@@ -253,6 +257,22 @@ def texts(m):
             btns.append(f"{i}-savol")
             
         bot.send_message(chat_id, reply, parse_mode="html", reply_markup=markup_button(btns, 3).add(*back_menu))
+        
+        
+        
+    #♻Yangilash
+    if text == "♻Yangilash":
+        reply = ["<b>○○○○○○○○○○ 0%</b>", "<b>●○○○○○○○○○ 10%</b>", "<b>●●○○○○○○○○ 20%</b>", "<b>●●●○○○○○○○ 30%</b>",
+                "<b>●●●●○○○○○○ 40%</b>", "<b>●●●●●○○○○○ 50%</b>", "<b>●●●●●●○○○○ 60%</b>", "<b>●●●●●●●○○○ 70%</b>",
+                "<b>●●●●●●●●○○ 80%</b>", "<b>●●●●●●●●●○ 90%</b>", "<b>●●●●●●●●●●100%</b>", f"● Botimiz yangilandi ✔\n● Qayta /start ni bosing!\n😎 By: {compane[0]}"
+                 ]
+        
+        send_msg = bot.send_message(chat_id, reply[0], parse_mode="html")
+        msg_id = send_msg.message_id
+        
+        for i in range(1, len(reply)):
+            bot.edit_message_text(chat_id=chat_id, message_id=msg_id, text=reply[i], parse_mode="html")
+            time.sleep(1)
         
         
         
