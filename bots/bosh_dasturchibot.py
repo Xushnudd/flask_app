@@ -104,16 +104,21 @@ def markup_button(btns, num, is_persistent=False, resize_keyboard=True, one_time
     return markup
 
 def inline_button(btns, num):
-    callback_button = types.InlineKeyboardMarkup()
+    keyboard = types.InlineKeyboardMarkup()
     
     for i in range(0, len(btns), num):
         row = []
         for j in range(num):
-            if i+1 < len(btns):
-                row.append(types.InlineKeyboardButton(btns[i+1][0], url=btns[i+1][1]))
-        callback_button.add(*row)
-    return callback_button
-
+            if i + j < len(btns):
+                row.append(
+                    types.InlineKeyboardButton(
+                        btns[i + j][0],
+                        url=btns[i + j][1]
+                    )
+                )
+        keyboard.add(*row)
+        
+    return keyboard
 
 
 token = ["7807701719:AAEEI6FMs6eFE6ffIEy1ri4KQ-HUehaKTbo", "5035661986:AAGHbdO-WNFHV9R1kf1LIJelYvPQ3OQGmy0"]
