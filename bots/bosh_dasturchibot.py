@@ -214,7 +214,6 @@ def texts(m):
             "🎇Telegram fon",
             "🔐Random Parol",
             "💱Valyuta kursi",
-            "🧩Matiqli savollar🧩",
             "♻Yangilash",
             "✔️Nick yasash✔️",
             "🤖BOT YASASH XIZMATI🤖"
@@ -290,20 +289,9 @@ def texts(m):
         
         
     
-    #Mantiqli savollar
-    if text == "🧩Matiqli savollar🧩":
-        state[chat_id]["step"] = "2.5"
-        
-        reply = "Tanlang!"
-        
-        btns = []
-        for i in range(1, 205):
-            if i == 1:
-                btns.append("🔙ortga")
-                btns.append("🔝Bosh sahifa")
-            btns.append(f"{i}-savol")
-            
-        bot.send_message(chat_id, reply, parse_mode="html", reply_markup=markup_button(btns, 3).add(*back_menu))
+    #
+    if text == "":
+        pass
         
         
         
@@ -311,8 +299,7 @@ def texts(m):
     if text == "♻Yangilash":
         reply = []
         for i in range(11):
-            reply.append(f"<b>{"●"*i}{"○"* (10-i)}{i*10}%</b>")
-        reply.append(f"● Botimiz yangilandi ✔\n● Qayta /start ni bosing!\n😎 By: {compane[0]}")
+            reply.append(f"<b>{'●'*i}{'○'*(10-i)}{i*10}%</b>")
         
         send_msg = bot.send_message(chat_id, reply[0], parse_mode="html")
         msg_id = send_msg.message_id
@@ -320,6 +307,8 @@ def texts(m):
         for i in range(1, len(reply)):
             bot.edit_message_text(chat_id=chat_id, message_id=msg_id, text=reply[i], parse_mode="html")
             time.sleep(1)
+        bot.delete_message(chat_id, msg_id)
+        bot.send_message(chat_id, f"● Botimiz yangilandi ✔\n● Qayta /start ni bosing!\n😎 By: {compane[0]}", reply_markup=types.ReplyKeyboardRemove())
             
             
             
@@ -330,7 +319,7 @@ def texts(m):
         reply = "Bu bo'limda 13 xil nick yasay olasiz.\nkerakli so'zni yozing !"
         bot.send_message(chat_id, reply, reply_markup=markup.add(*back_menu))
     
-    if step == "2.7" and text != "🔙ortga" and text != "🔝Bosh sahifa" and text != "/start":
+    if step == "2.7" and text != "🔙ortga" and text != "🔝Bosh sahifa" and text != "/start" and text != "/help":
         lst = change_fonts(text)
         for i in lst:
             bot.send_message(chat_id, i)
