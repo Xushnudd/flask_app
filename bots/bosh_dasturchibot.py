@@ -122,7 +122,7 @@ def inline_button(btns, num):
 
 
 token = ["7807701719:AAEEI6FMs6eFE6ffIEy1ri4KQ-HUehaKTbo", "5035661986:AAGHbdO-WNFHV9R1kf1LIJelYvPQ3OQGmy0"]
-bosh_dasturchibot = telebot.TeleBot(token[0], threaded=False)
+bosh_dasturchibot = telebot.TeleBot(token[1], threaded=False)
 
 compane = ['BOSH DASTURCHI | BOT', '@bosh_dasturchibot']
 state = {}
