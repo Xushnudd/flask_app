@@ -122,7 +122,7 @@ def inline_button(btns, num):
 
 
 token = ["7807701719:AAEEI6FMs6eFE6ffIEy1ri4KQ-HUehaKTbo", "5035661986:AAGHbdO-WNFHV9R1kf1LIJelYvPQ3OQGmy0"]
-bosh_dasturchibot = telebot.TeleBot(token[1], threaded=False)
+bosh_dasturchibot = telebot.TeleBot(token[0], threaded=False)
 
 compane = ['BOSH DASTURCHI | BOT', '@bosh_dasturchibot']
 state = {}
@@ -307,6 +307,7 @@ def texts(m):
         for i in range(1, len(reply)):
             bot.edit_message_text(chat_id=chat_id, message_id=msg_id, text=reply[i], parse_mode="html")
             time.sleep(1)
+            
         bot.delete_message(chat_id, msg_id)
         bot.send_message(chat_id, f"● Botimiz yangilandi ✔\n● Qayta /start ni bosing!\n😎 By: {compane[0]}", reply_markup=types.ReplyKeyboardRemove())
             
