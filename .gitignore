@@ -9,6 +9,7 @@ __pycache__/
 
 # Databases
 *.sqlite3
+*.db
 
 # Logs
 *.log
