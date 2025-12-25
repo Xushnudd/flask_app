@@ -63,7 +63,6 @@ if not r.get("admin"):
         set_admin(1190898538)
         
 admin = int(r.get("admin"))
-print(admin)
 
 
 
@@ -139,7 +138,7 @@ def main(m):
             
             
     
-    if text == "🚀 Xizmatni boshlash" and step == "1":
+    if text == "🚀 Xizmatni boshlash":
         reply = "Kerakli bo'limni tanlang !"
         btns = [
             ("🔵 Telegram", "telegram", "callback_data"),
@@ -147,10 +146,25 @@ def main(m):
             ("🟣 Instagram (Tez kunda)", "instagram", "callback_data"),
             ("⚫️ TikTok", "tiktok", "callback_data")
         ]
-        bot.send_message(chat_id, reply, parse_mode='html',
-                         reply_markup=inline_button(btns, 2)
-                         )
+        bot.send_message(chat_id, reply, parse_mode='html', reply_markup=inline_button(btns, 2))
         
+    if text == "💳 Mening balansim":
+        reply = f"💳 Sizning balansingiz: {get_balance(chat_id)} so‘m"
+        bot.reply_to(m, reply, reply_markup=inline_button([("➕ To‘ldirish", "pay", "callback_data")], 1))
+    
+    if text == "📘 Foydalanish qo‘llanmasi":
+        reply = ("📘 Foydalanish qo‘llanmasi\n\n"
+            ' 1️⃣ 🚀 "Xizmatni boshlash" tugmasini bosing.\n'
+            " 2️⃣ Kerakli platformani tanlang (Telegram, YouTube, TikTok).\n" 
+            " 3️⃣ Xizmat turini tanlang (obunachi, like, ko‘rish va boshqalar).\n"
+            " 4️⃣ Buyurtma miqdorini kiriting.\n"
+            " 5️⃣ 💳 Hisobingizni to‘ldiring va to‘lovni tasdiqlang.\n" 
+            " 6️⃣ 📈 Rivojlanish statistikasi bo‘limidan buyurtma jarayonini kuzatishingiz mumkin.\n\n" 
+            "⚠️ Eslatma:\n"
+            " — Havolalarni to‘g‘ri kiriting.\n"
+            "— Xizmat bajarilishi 1–24 soat davomida amalga oshiriladi.\n" 
+            "— Muammo tug‘ilsa 🤝 Yordam markaziga murojaat qiling.")
+        bot.send_message(chat_id, reply, parse_mode='html')
     
 if __name__ == "__main__":
     obunachiexpertbot.polling()
