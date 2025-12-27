@@ -2,6 +2,40 @@ import telebot
 
 from groq import Groq
 
+import json
+import os
+from datetime import datetime
+
+# Fayl nomi
+LOG_FILE = "chat_history.json"
+
+def save_to_json(user_id, user_name, question, answer):
+    # Yangi ma'lumot strukturasi
+    data_entry = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "user_id": user_id,
+        "user_name": user_name,
+        "question": question,
+        "answer": answer
+    }
+
+    # Fayl mavjudligini tekshirish va o'qish
+    if os.path.exists(LOG_FILE):
+        with open(LOG_FILE, "r", encoding="utf-8") as f:
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError:
+                data = []
+    else:
+        data = []
+
+    # Yangi ma'lumotni qo'shish
+    data.append(data_entry)
+
+    # Faylga qayta yozish
+    with open(LOG_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+
 token = "7807701719:AAEEI6FMs6eFE6ffIEy1ri4KQ-HUehaKTbo"
 groq_key = "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"
 models = [
@@ -68,8 +102,17 @@ def welcome(m):
 def answer(m):
     bot = super_yordamchibot
     text = m.text
+    user_id = m.from_user.id
+    user_name = m.from_user.first_name
     
-    bot.reply_to(m, groq_chat(text), parse_mode="HTML")
+    # AI dan javob olish
+    ai_response = groq_chat(text)
+    
+    # Telegramga yuborish
+    bot.reply_to(m, ai_response, parse_mode="HTML")
+    
+    # JSON ga saqlash
+    save_to_json(user_id, user_name, text, ai_response)
     
     
     
