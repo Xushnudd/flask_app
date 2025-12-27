@@ -21,7 +21,7 @@ def bosh_dasturchi():
     return 'ok', 200
 
 @app.route('/super_yordamchibot', methods=['POST'])
-def bosh_dasturchi():
+def super_yordamchi():
     update = telebot.types.Update.de_json(request.get_data().decode('utf-8'))
     super_yordamchibot.process_new_updates([update])
     return 'ok', 200
