@@ -1,0 +1,16 @@
+[
+    {
+        "timestamp": "2025-12-27 19:10:50",
+        "user_id": 1190898538,
+        "user_name": "Xushnud",
+        "question": "salom",
+        "answer": "<b>Salom</b>, sizga qanday yordam ko'rsatishim mumkin?"
+    },
+    {
+        "timestamp": "2025-12-27 19:10:57",
+        "user_id": 1190898538,
+        "user_name": "Xushnud",
+        "question": "/json",
+        "answer": "**JSON haqida ma'lumot**\nJSON (JavaScript Object Notation) - bu ochiq formatli ma'lumot almashish uchun mo'ljallangan. U odam uchun o'qiladigan, ammo kompyuterlar tomonidan ham o'qiladigan matn formatidir.\n\n<i>JSON ning asosiy xususiyatlari:</i>\n* Qisqa va aniq format\n* Odam uchun o'qiladí\n* Kompyuterlar tomonidan o'qiladí\n* Ko'p dasturlash tillari va texnologiyalari uchun qo'llab-quvvatlanadi\n\n<pre><code>{\n  \"name\": \"John\",\n  \"age\": 30,\n  \"city\": \"New York\"\n}</code></pre>\n\n<b>JSON ning afzalliklari:</b>\n* Oson tushuniladigan format\n* Kompakt va samarali format\n* Ko'p dasturlash tillarida qo'llab-quvvatlanadi"
+    }
+]

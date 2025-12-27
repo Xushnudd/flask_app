@@ -94,6 +94,34 @@ def groq_chat(text, model=get_next_model(), role="user"):
 
 super_yordamchibot = telebot.TeleBot(token=token, threaded=False)
 
+
+# 1. Admin ID sini o'zgaruvchiga saqlang (o'zingizning Telegram ID ingizni yozing)
+ADMIN_ID = 1190898538  # Bu yerga o'z ID ingizni kiriting
+
+@super_yordamchibot.message_handler(commands=['json'])
+def send_json_logs(message):
+    bot = super_yordamchibot
+    user_id = message.from_user.id
+    
+    # Faqat admin ekanligini tekshirish
+    if user_id == ADMIN_ID:
+        if os.path.exists("chat_history.json"):
+            try:
+                # Faylni yuborish
+                with open("chat_history.json", "rb") as file:
+                    bot.send_document(
+                        message.chat.id, 
+                        file, 
+                        caption="📊 Barcha savol-javoblar tarixi (JSON formatda)"
+                    )
+            except Exception as e:
+                bot.reply_to(message, f"❌ Faylni yuborishda xatolik: {str(e)}")
+        else:
+            bot.reply_to(message, "📁 Hozircha chat tarixi fayli mavjud emas.")
+    
+    
+    
+
 @super_yordamchibot.message_handler(commands=['start'])
 def welcome(m):
     super_yordamchibot.reply_to(m, "Assalomu alaykum! 👋\nSavolingizni yozing.")
@@ -113,7 +141,7 @@ def answer(m):
     
     # JSON ga saqlash
     save_to_json(user_id, user_name, text, ai_response)
-    
+
     
     
     
