@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request
 
 from bots.bosh_dasturchibot import bosh_dasturchibot
 import telebot
@@ -9,13 +9,9 @@ app = Flask(__name__)
 def home():
     return "Botlarim uchun web sayt"
 
-@app.route('/projects')
-def projects():
-    return "sahifalar"
-
-@app.route('/projects/show')
-def show():
-    return render_template('./rotate/index.html')
+@app.route('/api')
+def api():
+    
 
 @app.route('/bosh_dasturchibot', methods=['POST'])
 def bosh_dasturchi():
