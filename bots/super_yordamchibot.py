@@ -37,7 +37,7 @@ def save_to_json(user_id, user_name, question, answer):
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 token = "7807701719:AAEEI6FMs6eFE6ffIEy1ri4KQ-HUehaKTbo"
-groq_key = "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"
+groq_key = "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"
 models = [
     "llama-3.3-70b-versatile",   # Eng aqlli va yangi (Llama 3.3)
     "llama-3.1-70b-versatile",   # Barqaror va kuchli mantiq
