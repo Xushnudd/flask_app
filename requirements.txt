@@ -1,5 +1,0 @@
-gunicorn
-flask
-pyTelegramBotAPI
-requests
-groq
